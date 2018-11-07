@@ -10,6 +10,7 @@
   "author": "WFPB.fit SPC",
   "license": "MIT",
   "dependencies": {
+    "aws-serverless-express": "^3.3.5",
     "express": "^4.16.4",
     "stripe": "^6.13.0"
   },

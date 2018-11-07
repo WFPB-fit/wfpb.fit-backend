@@ -1,14 +1,21 @@
 import Stripe from "stripe";
 const stripe = Stripe(process.env.STRIPE_SERVER_SECRET);
 
-export default function StripeRoute(req, res) {
-//   req.body.token;
-//   req.body.amt;
+isDonationInvalid = amount => {
+  return isNaN(amount) || amount < minDonationAmount;
+};
 
-  const charge = stripe.charges.create({
-    amount: parseFloat(req.body.charge),
-    currency: "usd",
-    description: "Donation to WFPB.fit SPC (not tax-deductible)",
-    source: req.body.token
-  });
+export default function StripeRoute(req, res) {
+  const validationFailed = isDonationInvalid(req.body.chargeAmount);
+
+  if (!validationFailed) {
+    const charge = stripe.charges.create({
+      amount: parseFloat(req.body.chargeAmount),
+      currency: "usd",
+      description: "Donation to WFPB.fit SPC (not tax-deductible)",
+      source: req.body.stripeToken
+    });
+  }
+
+  res.send(validationFailed);
 }
