@@ -1,11 +1,10 @@
-import Stripe from "stripe";
-const stripe = Stripe(process.env.STRIPE_SERVER_SECRET);
+const stripe = require('stripe')(process.env.STRIPE_SERVER_SECRET_TEST);
 
-isDonationInvalid = amount => {
+function isDonationInvalid(amount) {
   return isNaN(amount) || amount < minDonationAmount;
 };
 
-export default function StripeRoute(req, res) {
+function StripeRoute(req, res) {
   const validationFailed = isDonationInvalid(req.body.chargeAmount);
 
   if (!validationFailed) {
@@ -19,3 +18,5 @@ export default function StripeRoute(req, res) {
 
   res.send(validationFailed);
 }
+
+module.exports = StripeRoute;

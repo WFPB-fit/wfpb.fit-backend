@@ -1,0 +1,10 @@
+{
+  "lambda": {
+    "role": "wfpb_fit-backend-executor",
+    "name": "wfpb_fit-backend",
+    "region": "us-east-1"
+  },
+  "api": {
+    "id": "boqu8b2s6k"
+  }
+}
