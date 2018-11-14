@@ -6,25 +6,23 @@ function isDonationInvalid(amount) {
 }
 
 function StripeRoute(req, res) {
-  // console.log(req.body);
+  console.log(req.body);
 
   if (Object.keys(req.body).length === 0 && req.body.constructor === Object) {
     res.send("Request missing all parameters");
   } else {
-    const parsedBody = JSON.parse(Object.keys(req.body)[0]);
-    console.log(parsedBody);
-    if (!parsedBody.chargeAmount || !parsedBody.stripeToken) {
+    if (!req.body.chargeAmount || !req.body.stripeToken) {
       res.send("Request missing required parameter");
-    } else if (isDonationInvalid(parsedBody.chargeAmount)) {
+    } else if (isDonationInvalid(req.body.chargeAmount)) {
       res.send("Charge amount is invalid");
     } else {
       // const charge =
       stripe.charges
         .create({
-          amount: parseFloat(parsedBody.chargeAmount),
+          amount: parseFloat(req.body.chargeAmount),
           currency: "usd",
           description: "Donation to WFPB.fit SPC (not tax-deductible)",
-          source: parsedBody.stripeToken
+          source: req.body.stripeToken
         })
         .then(stripeResponse => {
           res.send("Payment processed. Thank you for your donation!");
