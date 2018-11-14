@@ -19,28 +19,13 @@ app.use(bodyParser.json());
 
 app.use(
   cors({
-    origin: [".*localhost.*"]
+    origin: [
+      /^http:\/\/localhost.*/
+      // /^https:\/\/wfpb/.fit.*/
+    ]
   })
-); 
+);
 app.options("*", cors()); // include before other routes
-
-
-// const allowedOrigins = [
-//   "http://localhost:3000",
-//   //"https://wfpb.fit"
-// ];
-// app.use(function(req, res, next) {
-//   //read request and if it's from the allowedOrigins add that origin to header for CORS
-//   let origin = req.headers.origin;
-//   if (allowedOrigins.includes(origin)) {
-//     res.header("Access-Control-Allow-Origin", origin); // restrict it to the required domain
-//   }
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   next();
-// });
 
 //Connect functions to API routes
 app.post("/charge", StripeRoute);
