@@ -5,6 +5,7 @@ require("dotenv").config();
 var express = require("express");
 var bodyParser = require("body-parser");
 var cors = require("cors");
+const sls = require("serverless-http");
 
 //import route functions
 const StripeRoute = require("./StripeRoute");
@@ -20,8 +21,8 @@ app.use(bodyParser.json());
 app.use(
   cors({
     origin: [
-      /^http:\/\/localhost.*/
-      // /^https:\/\/wfpb/.fit.*/
+      // /^http:\/\/localhost.*/
+      /^https:\/\/wfpb\.fit.*/
     ]
   })
 );
@@ -32,7 +33,8 @@ app.post("/charge", StripeRoute);
 
 //export app for local testing or lambda serverless running
 //more info:
-// https://medium.freecodecamp.org/express-js-and-aws-lambda-a-serverless-love-story-7c77ba0eaa35
-// https://claudiajs.com/tutorials/installing.html
-// https://console.aws.amazon.com/iam/home?#security_credential
+// https://dev.to/adnanrahic/how-to-deploy-a-nodejs-application-to-aws-lambda-using-serverless-2nc7
+// https://github.com/serverless/serverless
 module.exports = app;
+
+module.exports.server = sls(app);

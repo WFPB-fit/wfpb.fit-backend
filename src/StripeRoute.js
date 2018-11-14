@@ -1,4 +1,9 @@
-const stripe = require("stripe")(process.env.STRIPE_SERVER_SECRET_TEST);
+let stripeKey = process.env.STRIPE_SERVER_SECRET_TEST;
+if (process.env.NODE_ENV == "production") {
+  stripeKey = process.env.STRIP_SERVER_KEY;
+}
+const stripe = require("stripe")(stripeKey);
+
 const minDonationAmount = 0.5;
 
 function isDonationInvalid(amount) {
