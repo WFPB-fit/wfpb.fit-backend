@@ -38,7 +38,7 @@ Outputs:
 Resources:
   ApiGatewayApi:
     Properties:
-      DefinitionUri: s3://wfpbbucket/79e3ace382031e9e94df266d1d0a5cc4
+      DefinitionUri: s3://wfpbbucket/b988ca37a22bce2223f24513d5e089ea
       StageName: prod
       Variables:
         ServerlessExpressLambdaFunctionName:
@@ -87,7 +87,7 @@ Resources:
     Type: AWS::IAM::Role
   wfpbDonations:
     Properties:
-      CodeUri: s3://wfpbbucket/9c68202834f9917cd34f096472ab9304
+      CodeUri: s3://wfpbbucket/ea8d50df0dcf2c024062fb883ed6e387
       Events:
         ProxyApiGreedy:
           Properties:
