@@ -1,4 +1,4 @@
-let stripeKey = process.env.STRIPE_SERVER_SECRET_TEST;
+let stripeKey = 'sk_test_tGx1hKqVLh3o3kInOAAk5VLs'; //test key
 if (process.env.NODE_ENV == "production") {
   stripeKey = process.env.STRIP_SERVER_KEY;
 }

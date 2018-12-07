@@ -1,6 +1,3 @@
-//configure env variables
-require("dotenv").config();
-
 //import packages
 var express = require("express");
 var bodyParser = require("body-parser");
