@@ -5,14 +5,12 @@ require("dotenv").config();
 var express = require("express");
 var bodyParser = require("body-parser");
 var cors = require("cors");
-const sls = require("serverless-http");
 
 //import route functions
-const StripeRoute = require("./StripeRoute");
+const StripeRoute = require("./src/StripeRoute");
 
 //setup app
 const app = express();
-const port = process.env.PORT || 5000;
 
 //setup bodyparser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -35,6 +33,6 @@ app.post("/charge", StripeRoute);
 //more info:
 // https://dev.to/adnanrahic/how-to-deploy-a-nodejs-application-to-aws-lambda-using-serverless-2nc7
 // https://github.com/serverless/serverless
-module.exports = app;
 
-module.exports.server = sls(app);
+// - https://aws.amazon.com/blogs/compute/going-serverless-migrating-an-express-application-to-amazon-api-gateway-and-aws-lambda/
+module.exports = app;
