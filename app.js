@@ -17,12 +17,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(
-  cors({
-    origin: [
-      // /^http:\/\/localhost.*/
-      /^https:\/\/wfpb\.fit.*/
-    ]
-  })
+  cors(
+  //   {
+  //   origin: [
+  //     // /^http:\/\/localhost.*/
+  //     /^https:\/\/wfpb\.fit.*/
+  //   ]
+  // }
+  )
 );
 app.options("*", cors()); // include before other routes
 
