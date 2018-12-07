@@ -87,7 +87,7 @@ Resources:
     Type: AWS::IAM::Role
   wfpbDonations:
     Properties:
-      CodeUri: s3://wfpbbucket/b91f2c0c60400e017ee3d9b25202838f
+      CodeUri: s3://wfpbbucket/3cfeb96e757edef9f060bc2aa0ebbc0b
       Events:
         ProxyApiGreedy:
           Properties:
